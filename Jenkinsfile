@@ -13,7 +13,10 @@ node('linux') {
  		sh 'aws s3 cp /workspace/java-pipeline/dist/rectangle-*.jar s3://akht8823-assignment-10/'
        	}
     stage('Report'){	
-        sh 'aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins' 
+        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '8e1a0b06-5f11-4485-97fb-44e335762aba', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) 
+        {
+        sh 'aws cloudformation describe-stack-resources --stack-name jenkins --region us-east-1' 
+        }
 	}
 }
-   
+  
