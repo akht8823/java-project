@@ -15,7 +15,7 @@ node('linux') {
 		}
     stage ('Deploy') {
         steps {
-        	sh 'aws s3 cp /workspace/java-pipeline/dist/rectangle-*.jar s3://jenkins-assignment10-s3bucket-ag/' 
+        	sh 'aws s3 cp /workspace/java-pipeline/dist/rectangle-*.jar s3://akht8823-assignment-10/' 
 			}
        	}
     stage('Report'){	
