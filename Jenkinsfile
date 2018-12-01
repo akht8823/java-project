@@ -1,9 +1,14 @@
 properties([pipelineTriggers([githubPush()])])
 node('linux') { 
+	agent any
 	stage('Unit Tests') {		git 'https://github.com/akht8823/java-project.git'
-		sh 'ant'
-		junit 'reports/result.xml'
-		sh 'ant -f test.xml -v'		
+		Steps {
+			sh 'ant -f test.xml -v'	
+			junit 'reports/result/*.xml'
+			
+		}
 	}	stage('Build') { 
-		sh 'ant'
-		sh 'ant -f build.xml -v'	}}
+		Steps {
+			sh 'ant'
+			sh 'ant -f build.xml -v'
+		}	}	}
