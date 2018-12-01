@@ -6,5 +6,4 @@ properties([pipelineTriggers([githubPush()])])
 		sh 'ant -f test.xml -v'		
 	}	stage('Build') { 
 		sh 'ant'
-		sh 'ant -f build.xml -v'	}	stage('Report') {		junit 'reports/*.xml' 
-	}}
+		sh 'ant -f build.xml -v'	}}
